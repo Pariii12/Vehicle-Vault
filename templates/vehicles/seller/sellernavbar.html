@@ -1,0 +1,32 @@
+<nav class="seller-navbar">
+  <div class="nav-container">
+
+    <!-- Brand -->
+    <a class="nav-brand" href="{% url 'seller_dashboard' %}">Vehicle Vault </a>
+
+    <!-- Toggle for mobile -->
+    <button class="nav-toggle" data-bs-toggle="collapse" data-bs-target="#sellerNav">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <!-- Menu -->
+    <div class="collapse navbar-collapse" id="sellerNav">
+      <ul class="seller-nav-menu">
+
+        <li><a class="seller-nav-link" href="{% url 'seller_dashboard' %}">Home</a></li>
+
+        <li><a class="seller-nav-link" href="{% url 'vehicle_list' %}">My Vehicles</a></li>
+
+        <li><a class="seller-nav-link" href="{% url 'my_offer' %}">Offers</a></li>
+
+        <li><a class="seller-nav-link" href="{% url 'inbox' %}">Messages</a></li>
+
+        <li><a class="seller-nav-link" href="{% url 'transaction_list' %}">Transactions</a></li>
+
+        <li><a class="seller-nav-link logout-link" href="{% url 'logout' %}">Logout</a></li>
+
+      </ul>
+    </div>
+
+  </div>
+</nav>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="logout-container d-flex justify-content-center align-items-center">
+
+    <div class="logout-card shadow fade-in">
+
+        <div class="logout-header">
+            <h4>Logged Out</h4>
+        </div>
+
+        <div class="logout-body">
+            <p class="logout-text">You have been successfully logged out of Vehicle Vault.</p>
+
+            <a href="{% url 'login' %}" class="logout-btn w-100">
+                <i class="bi bi-box-arrow-in-right"></i> Login Again
+            </a>
+        </div>
+
+        <div class="logout-footer">
+            <small>Want to explore more? <a href="{% url 'home' %}">Return to Home</a></small>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

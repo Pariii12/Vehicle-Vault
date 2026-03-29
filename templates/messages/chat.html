@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="chat-container">
+
+    <h2 class="chat-title">Chat with {{ other_user.full_name }}</h2>
+
+    <div class="chat-box" id="chatBox">
+        {% for msg in conversation %}
+            <div class="chat-message {% if msg.sender == request.user %}sent{% else %}received{% endif %}">
+                <p class="msg-text">{{ msg.message_text }}</p>
+                <small class="msg-time">{{ msg.sent_at|date:"d M Y, h:i A" }}</small>
+            </div>
+        {% empty %}
+            <p class="no-messages">No messages yet. Start the conversation!</p>
+        {% endfor %}
+    </div>
+
+    <form method="post" class="chat-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="chat-send-btn">Send</button>
+    </form>
+
+</div>
+
+<script>
+// Auto-scroll to bottom
+var chatBox = document.getElementById("chatBox");
+chatBox.scrollTop = chatBox.scrollHeight;
+</script>
+
+{% endblock %}

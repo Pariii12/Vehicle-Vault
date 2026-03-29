@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="fav-container">
+
+    <h2 class="fav-title">My Favourite Vehicles</h2>
+
+    <div class="fav-card">
+
+        <table class="fav-table">
+            <thead>
+                <tr>
+                    <th>Vehicle</th>
+                    <th>Price</th>
+                    <th>Location</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for fav in favourites %}
+                <tr class="fav-row">
+
+                    <td class="vehicle-name">
+
+                        {% if fav.vehicle.images.first %}
+                            <img src="{{ fav.vehicle.images.first.image.url }}" class="fav-img" alt="{{ fav.vehicle }}">
+                        {% endif %}
+                        
+                        {{ fav.vehicle.brand }} {{ fav.vehicle.model }} ({{ fav.vehicle.year }})
+                    </td>
+
+                    
+                    <td class="price">₹{{ fav.vehicle.price }}</td>
+
+                    <td>{{ fav.vehicle.location }}</td>
+
+                    <td>
+                        <a href="{% url 'vehicle_detail' fav.vehicle.pk %}" class="view-btn">View</a>
+                        <a href="{% url 'remove_favourite' fav.vehicle.pk %}" class="remove-btn">Remove</a>
+                    </td>
+
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="no-fav">No favourites yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

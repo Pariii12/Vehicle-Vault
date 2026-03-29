@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="transaction-container">
+
+    <h2 class="transaction-title">My Transactions</h2>
+
+    <div class="transaction-card">
+
+        <table class="transaction-table">
+            <thead>
+                <tr>
+                    <th>Vehicle</th>
+                    <th>Buyer</th>
+                    <th>Seller</th>
+                    <th>Final Price</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for t in transactions %}
+                <tr class="transaction-row">
+
+                    <td class="vehicle-name">
+                        {{ t.vehicle.brand }} {{ t.vehicle.model }} ({{ t.vehicle.year }})
+                    </td>
+
+                    <td>{{ t.buyer.full_name }}</td>
+                    <td>{{ t.seller.full_name }}</td>
+
+                    <td class="price">₹{{ t.final_price }}</td>
+
+                    <td>
+                        <span class="status-badge status-{{ t.status|lower }}">
+                            {{ t.status }}
+                        </span>
+                    </td>
+
+                    <td>{{ t.transaction_date }}</td>
+
+                    <td>
+                        <a href="{% url 'transaction_detail' t.pk %}" class="details-btn">
+                            View
+                        </a>
+                    </td>
+
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="no-transactions">No transactions found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

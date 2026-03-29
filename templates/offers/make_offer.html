@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="offer-container">
+
+    <h2 class="offer-title">
+        Make Offer for {{ vehicle.brand }} {{ vehicle.model }} ({{ vehicle.year }})
+    </h2>
+
+    {% if vehicle.images.first %}
+    <div class="offer-image-box">
+        <img src="{{ vehicle.images.first.image.url }}" alt="{{ vehicle }}" class="offer-img">
+    </div>
+    {% endif %}
+
+    <p class="offer-price">Listed Price: ₹{{ vehicle.price }}</p>
+    <p class="offer-location">Location: {{ vehicle.location }}</p>
+
+    <div class="offer-card">
+
+        <form method="post" class="offer-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit" class="offer-btn">
+                Submit Offer
+            </button>
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
+

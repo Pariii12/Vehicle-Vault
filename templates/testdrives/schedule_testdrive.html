@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="schedule-container">
+
+    <h2 class="schedule-title">
+        Schedule Test Drive for {{ vehicle.brand }} {{ vehicle.model }} ({{ vehicle.year }})
+    </h2>
+
+    {% if vehicle.images.first %}
+    <div class="schedule-image-box">
+        <img src="{{ vehicle.images.first.image.url }}" alt="{{ vehicle }}" class="schedule-img">
+    </div>
+    {% endif %}
+    
+    <div class="schedule-card">
+
+        <form method="post" class="schedule-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit" class="schedule-btn">
+                Schedule Test Drive
+            </button>
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

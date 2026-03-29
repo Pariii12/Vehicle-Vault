@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="tdetail-container">
+
+    <h2 class="tdetail-title">Transaction Details</h2>
+
+    <div class="tdetail-card">
+
+        <div class="tdetail-section">
+            <h3 class="section-title">Vehicle Information</h3>
+            <p><strong>Vehicle:</strong> {{ transaction.vehicle.brand }} {{ transaction.vehicle.model }} ({{ transaction.vehicle.year }})</p>
+        </div>
+
+        <div class="tdetail-section">
+            <h3 class="section-title">Parties Involved</h3>
+            <p><strong>Buyer:</strong> {{ transaction.buyer.full_name }}</p>
+            <p><strong>Seller:</strong> {{ transaction.seller.full_name }}</p>
+        </div>
+
+        <div class="tdetail-section">
+            <h3 class="section-title">Transaction Summary</h3>
+            <p><strong>Final Price:</strong> ₹{{ transaction.final_price }}</p>
+
+            <p>
+                <strong>Status:</strong>
+                <span class="status-badge status-{{ transaction.status|lower }}">
+                    {{ transaction.status }}
+                </span>
+            </p>
+
+            <p><strong>Date:</strong> {{ transaction.transaction_date }}</p>
+            <p><strong>Last Updated:</strong> {{ transaction.updated_at }}</p>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

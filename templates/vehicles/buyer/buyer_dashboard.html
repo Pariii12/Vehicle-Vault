@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="dashboard-container">
+
+    <!-- Header -->
+    <div class="dashboard-header">
+        <h2 class="dashboard-title">👤 Buyer Dashboard</h2>
+        <p class="dashboard-subtitle">Welcome back! Manage your activity easily.</p>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row mt-4">
+
+        <div class="col-md-4 mb-4">
+            <div class="dash-card shadow-sm">
+                <div class="dash-icon bg-primary text-white">
+                    <i class="bi bi-heart-fill"></i>
+                </div>
+                <h5 class="dash-title">My Favourites</h5>
+                <p class="dash-text">View all your saved vehicles.</p>
+                <a href="{% url 'favourite_list' %}" class="btn dash-btn">View</a>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="dash-card shadow-sm">
+                <div class="dash-icon bg-success text-white">
+                    <i class="bi bi-cash-stack"></i>
+                </div>
+                <h5 class="dash-title">My Offers</h5>
+                <p class="dash-text">Track your submitted offers.</p>
+                <a href="{% url 'my_offer' %}" class="btn dash-btn">View</a>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="dash-card shadow-sm">
+                <div class="dash-icon bg-warning text-white">
+                    <i class="bi bi-calendar-check-fill"></i>
+                </div>
+                <h5 class="dash-title">Test Drives</h5>
+                <p class="dash-text">Manage your scheduled test drives.</p>
+                <a href="{% url 'my_testdrive' %}" class="btn dash-btn">View</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

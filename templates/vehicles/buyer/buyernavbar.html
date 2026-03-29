@@ -1,0 +1,36 @@
+<nav class="buyer-navbar">
+  <div class="nav-container">
+
+    <!-- Brand -->
+    <a class="nav-brand" href="{% url 'buyer_dashboard' %}">Vehicle Vault</a>
+
+    <!-- Toggle for mobile -->
+    <button class="nav-toggle" data-bs-toggle="collapse" data-bs-target="#buyerNav">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <!-- Menu -->
+    <div class="collapse navbar-collapse" id="buyerNav">
+      <ul class="buyer-nav-menu">
+
+        <li><a class="buyer-nav-link" href="{% url 'buyer_dashboard' %}">Home</a></li>
+
+        <li><a class="buyer-nav-link" href="{% url 'vehicle_list' %}">Browse Vehicles</a></li>
+
+        <li><a class="buyer-nav-link" href="{% url 'favourite_list' %}">Favourites</a></li>
+
+
+        <li><a class="buyer-nav-link" href="{% url 'my_offer' %}">My Offers</a></li>
+
+        <li><a class="buyer-nav-link" href="{% url 'inbox' %}">Messages</a></li>
+
+
+        <li><a class="buyer-nav-link" href="{% url 'my_testdrive' %}">Test Drives</a></li>
+
+        <li><a class="buyer-nav-link logout-link" href="{% url 'logout' %}">Logout</a></li>
+
+      </ul>
+    </div>
+
+  </div>
+</nav>

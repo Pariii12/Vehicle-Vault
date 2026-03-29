@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="vehicle-detail-container">
+
+    <h2 class="vehicle-detail-title">
+        {{ vehicle.brand }} {{ vehicle.model }} ({{ vehicle.year }})
+    </h2>
+
+    <div class="vehicle-images">
+        {% for img in vehicle.images.all %}
+            <img src="{{ img.image.url }}" alt="Vehicle Image" class="vehicle-img">
+        {% empty %}
+            <p>No images available.</p>
+        {% endfor %}
+    </div>
+
+    <div class="vehicle-price-box">
+        <span class="price-label">Price:</span>
+        <span class="price-value">₹{{ vehicle.price }}</span>
+    </div>
+
+    <div class="vehicle-specs">
+
+        <div class="spec-item">
+            <span class="spec-label">Mileage</span>
+            <span class="spec-value">{{ vehicle.mileage }} km</span>
+        </div>
+
+        <div class="spec-item">
+            <span class="spec-label">Location</span>
+            <span class="spec-value">{{ vehicle.location }}</span>
+        </div>
+
+    </div>
+
+    <div class="vehicle-features">
+        <h4>Features</h4>
+        <ul>
+            {% if vehicle.sunroof %}<li>Sunroof</li>{% endif %}
+            {% if vehicle.touchscreen %}<li>Touchscreen</li>{% endif %}
+            {% if vehicle.rear_camera %}<li>Rear Camera</li>{% endif %}
+        </ul>
+    </div>
+
+    <div class="vehicle-description">
+        <h4>Description</h4>
+        <p>{{ vehicle.description }}</p>
+    </div>
+
+    <div class="vehicle-actions">
+        <a href="{% url 'edit_vehicle' vehicle.pk %}" class="detail-btn edit-btn">Edit Vehicle</a>
+        <a href="{% url 'compare_vehicle' vehicle.pk %}" class="detail-btn compare-btn">Compare</a>
+        <a href="{% url 'delete_vehicle' vehicle.pk %}" class="detail-btn delete-link">Delete Vehicle</a>
+    </div>
+
+</div>
+
+{% endblock %}

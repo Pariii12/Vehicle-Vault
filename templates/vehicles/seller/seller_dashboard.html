@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="seller-dashboard">
+    <div class="seller-header">
+        <h2>🧑‍🔧 Seller Dashboard</h2>
+        <p>Manage your listings, offers, and transactions.</p>
+    </div>
+
+    <!-- Action Cards -->
+    <div class="dashboard-grid">
+        <!-- My Vehicles -->
+        <div class="seller-card">
+            <div class="seller-icon bg-primary text-white">
+                <i class="bi bi-car-front-fill"></i>
+            </div>
+            <h5>My Vehicles</h5>
+            <p>Manage your listings.</p>
+            <a href="{% url 'vehicle_list' %}" class="seller-btn btn-primary">Go</a>
+        </div>
+
+        <!-- Offers Received -->
+        <div class="seller-card">
+            <div class="seller-icon bg-success text-white">
+                <i class="bi bi-envelope-open-fill"></i>
+            </div>
+            <h5>Offers Received</h5>
+            <p>View offers from buyers.</p>
+            <a href="{% url 'my_offer' %}" class="seller-btn btn-success">Go</a>
+        </div>
+
+        <div class="seller-card">
+             <div class="seller-icon bg-info text-white">
+                 <i class="bi bi-chat-dots-fill"></i>
+             </div>
+             <h5>Messages</h5>
+             <p>Chat with buyers.</p>
+             <a href="{% url 'inbox' %}" class="seller-btn btn-info text-white">Go</a>
+        </div>
+
+        <!-- Transactions -->
+        <div class="seller-card">
+            <div class="seller-icon bg-warning text-white">
+                <i class="bi bi-receipt-cutoff"></i>
+            </div>
+            <h5>Transactions</h5>
+            <p>Completed sales records.</p>
+            <a href="{% url 'transaction_list' %}" class="seller-btn btn-warning text-white">Go</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

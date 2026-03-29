@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="testdrive-container">
+
+    <h2 class="testdrive-title">My Test Drives</h2>
+
+    <div class="testdrive-card">
+
+        <table class="testdrive-table">
+            <thead>
+                <tr>
+                    <th>Vehicle</th>
+                    <th>Seller</th>
+                    <th>Scheduled Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for td in testdrives %}
+                <tr class="testdrive-row">
+                    <td class="vehicle-name">
+                        {{ td.vehicle.brand }} {{ td.vehicle.model }} ({{ td.vehicle.year }})
+                    </td>
+
+                    <td>{{ td.seller.full_name }}</td>
+
+                    <td>{{ td.scheduled_date }}</td>
+
+                    <td>
+                        <span class="status-badge status-{{ td.status|lower }}">
+                            {{ td.status }}
+                        </span>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="no-testdrives">No test drives scheduled.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

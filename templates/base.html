@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Vehicle Vault{% endblock %}</title>
+
+    <!-- Global Styles -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    
+{% if not request.user.is_authenticated %}
+    {% include 'navbar.html' %}
+{% else %}
+    {% if request.user.role == 'buyer' %}
+        {% include 'vehicles/buyer/buyernavbar.html' %}
+    {% elif request.user.role == 'seller' %}
+        {% include 'vehicles/seller/sellernavbar.html' %}
+    {% elif request.user.role == 'admin' %}
+        {% include 'vehicles/admin/adminnavbar.html' %}
+    {% endif %}
+{% endif %}
+    
+    <!-- MAIN CONTENT -->
+    <main class="main-wrapper">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    {% include 'footer.html' %}
+
+</body>
+</html>

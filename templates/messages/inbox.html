@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="inbox-container">
+
+    <h2 class="inbox-title">Inbox</h2>
+
+    <div class="inbox-card">
+
+        <table class="inbox-table">
+            <thead>
+                <tr>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Message</th>
+                    <th>Sent At</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for msg in messages %}
+                <tr class="inbox-row">
+
+                    <td>{{ msg.sender.full_name }}</td>
+                    <td>{{ msg.receiver.full_name }}</td>
+
+                    <td>
+                        {% if msg.sender == request.user %}
+                            <a href="{% url 'chat' msg.receiver.id %}" class="msg-link">
+                                {{ msg.message_text|truncatewords:10 }}
+                            </a>
+                        {% else %}
+                            <a href="{% url 'chat' msg.sender.id %}" class="msg-link">
+                                {{ msg.message_text|truncatewords:10 }}
+                            </a>
+                        {% endif %}
+                    </td>
+
+                    <td>{{ msg.sent_at|date:"d M Y, h:i A" }}</td>
+
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="no-msg">No messages yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

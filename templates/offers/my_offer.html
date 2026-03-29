@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="offers-container">
+
+    <h2 class="offers-title">My Offers</h2>
+
+    <div class="offers-card">
+
+        <table class="offers-table">
+            <thead>
+                <tr>
+                    <th>Vehicle</th>
+                    <th>Offered Price</th>
+                    <th>Status</th>
+                    <th>Created At</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for offer in offers %}
+                <tr class="offers-row">
+
+                    <td class="vehicle-name">
+                        {{ offer.vehicle.brand }} {{ offer.vehicle.model }} ({{ offer.vehicle.year }})
+                    </td>
+
+                    <td class="price">₹{{ offer.offered_price }}</td>
+
+                    <td>
+                        <span class="status-badge status-{{ offer.status|lower }}">
+                            {{ offer.status }}
+                        </span>
+                    </td>
+
+                    <td>{{ offer.created_at }}</td>
+
+                    <td>
+                        <a href="{% url 'offer_details' offer.pk %}" class="details-btn">
+                            View
+                        </a>
+                    </td>
+
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="no-offers">No offers yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

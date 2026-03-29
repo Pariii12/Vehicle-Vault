@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="admin-dashboard">
+
+    <div class="admin-header">
+        <h2>🛠️ Admin Panel</h2>
+        <p>Welcome, Admin. Manage the entire platform from here.</p>
+    </div>
+
+    <div class="dashboard-grid">
+
+        <!-- Manage Users -->
+        <div class="admin-card">
+            <div class="admin-icon bg-danger text-white">
+                <i class="bi bi-people-fill"></i>
+            </div>
+            <h5>Manage Users</h5>
+            <p>View, edit, or remove users.</p>
+            <a href="/admin/core/user/" class="admin-btn btn-danger">Open</a>
+        </div>
+
+        <!-- Manage Vehicles -->
+        <div class="admin-card">
+            <div class="admin-icon bg-warning text-white">
+                <i class="bi bi-car-front-fill"></i>
+            </div>
+            <h5>Manage Vehicles</h5>
+            <p>Approve, edit, or delete vehicle listings.</p>
+            <a href="/admin/vehicle/vehicle/" class="admin-btn btn-warning text-white">Open</a>
+        </div>
+
+        <!-- Manage Offers -->
+        <div class="admin-card">
+            <div class="admin-icon bg-info text-white">
+                <i class="bi bi-cash-stack"></i>
+            </div>
+            <h5>Manage Offers</h5>
+            <p>Review, approve, or reject offers.</p>
+            <a href="/admin/vehicle/offer/" class="admin-btn btn-info text-white">Open</a>
+        </div>
+
+        <!-- Manage Transactions -->
+        <div class="admin-card">
+            <div class="admin-icon bg-success text-white">
+                <i class="bi bi-credit-card-fill"></i>
+            </div>
+            <h5>Manage Transactions</h5>
+            <p>Track and manage completed transactions.</p>
+            <a href="/admin/vehicle/transaction/" class="admin-btn btn-success">Open</a>
+        </div>
+
+        <!-- Manage Test Drives -->
+        <div class="admin-card">
+            <div class="admin-icon bg-primary text-white">
+                <i class="bi bi-calendar-check-fill"></i>
+            </div>
+            <h5>Manage Test Drives</h5>
+            <p>View and manage scheduled test drives.</p>
+            <a href="/admin/vehicle/testdrive/" class="admin-btn btn-primary text-white">Open</a>
+        </div>
+
+        <!-- Manage Inspections -->
+        <div class="admin-card">
+            <div class="admin-icon bg-secondary text-white">
+                <i class="bi bi-clipboard-check-fill"></i>
+            </div>
+            <h5>Manage Inspections</h5>
+            <p>Review inspection reports and statuses.</p>
+            <a href="/admin/vehicle/vehicleinspection/" class="admin-btn btn-secondary text-white">Open</a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

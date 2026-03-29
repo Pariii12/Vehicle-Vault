@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="compare-container">
+
+    <h2 class="compare-title">Compare Vehicles</h2>
+
+    <div class="compare-grid">
+
+        <!-- First Vehicle -->
+        <div class="compare-card">
+            <h4 class="car-title">{{ vehicle.brand }} {{ vehicle.model }} ({{ vehicle.year }})</h4>
+
+            <div class="compare-images">
+                {% for img in vehicle.images.all %}
+                    <img src="{{ img.image.url }}" alt="Vehicle Image" class="compare-img">
+                {% empty %}
+                    <p>No images available.</p>
+                {% endfor %}
+            </div>
+
+            <div class="compare-spec">
+                <span class="label">Price:</span>
+                <span class="value">₹{{ vehicle.price }}</span>
+            </div>
+
+            <div class="compare-spec">
+                <span class="label">Mileage:</span>
+                <span class="value">{{ vehicle.mileage }} km</span>
+            </div>
+
+            <div class="compare-spec">
+                <span class="label">Location:</span>
+                <span class="value">{{ vehicle.location }}</span>
+            </div>
+        </div>
+
+        <!-- Second Vehicle -->
+        {% if other_vehicle %}
+        <div class="compare-card">
+            <h4 class="car-title">{{ other_vehicle.brand }} {{ other_vehicle.model }} ({{ other_vehicle.year }})</h4>
+
+            <div class="compare-images">
+                {% for img in other_vehicle.images.all %}
+                    <img src="{{ img.image.url }}" alt="Vehicle Image" class="compare-img">
+                {% empty %}
+                    <p>No images available.</p>
+                {% endfor %}
+            </div>
+
+            <div class="compare-spec">
+                <span class="label">Price:</span>
+                <span class="value">₹{{ other_vehicle.price }}</span>
+            </div>
+
+            <div class="compare-spec">
+                <span class="label">Mileage:</span>
+                <span class="value">{{ other_vehicle.mileage }} km</span>
+            </div>
+
+            <div class="compare-spec">
+                <span class="label">Location:</span>
+                <span class="value">{{ other_vehicle.location }}</span>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

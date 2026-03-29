@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="inspect-container">
+
+    <h2 class="inspect-title">
+        Inspection Report for {{ vehicle.brand }} {{ vehicle.model }} ({{ vehicle.year }})
+    </h2>
+
+    {% if inspection %}
+    <div class="inspect-info-card">
+
+        <h3 class="section-title">Current Inspection Status</h3>
+
+        <p>
+            <strong>Status:</strong>
+            <span class="status-badge status-{{ inspection.inspection_status|lower }}">
+                {{ inspection.inspection_status }}
+            </span>
+        </p>
+
+        <p><strong>Date:</strong> {{ inspection.inspection_date }}</p>
+
+        <div class="inspect-report-box">
+            <p>{{ inspection.report_details }}</p>
+        </div>
+
+    </div>
+    {% endif %}
+
+    <div class="inspect-form-card">
+
+        <h3 class="section-title">
+            {% if inspection %}Update Report{% else %}Create New Report{% endif %}
+        </h3>
+
+        <form method="post" class="inspect-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit" class="inspect-btn">
+                {% if inspection %}Update Report{% else %}Create Report{% endif %}
+            </button>
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+<nav class="admin-navbar">
+  <div class="nav-container">
+
+    <!-- Brand -->
+    <a class="nav-brand" href="{% url 'admin_dashboard' %}">Admin</a>
+
+    <!-- Toggle for mobile -->
+    <button class="nav-toggle" data-bs-toggle="collapse" data-bs-target="#adminNav">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <!-- Menu -->
+    <div class="collapse navbar-collapse" id="adminNav">
+      <ul class="admin-nav-menu">
+
+        <li><a class="admin-nav-link" href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+
+        <li><a class="admin-nav-link" href="/admin/core/user/">Manage Users</a></li>
+
+        <li><a class="admin-nav-link" href="/admin/vehicle/vehicle/">Manage Vehicles</a></li>
+
+        <li><a class="admin-nav-link" href="/admin/vehicle/offer/">Manage Offers</a></li>
+
+        <li><a class="admin-nav-link" href="/admin/vehicle/transaction/">Transactions</a></li>
+
+        <li><a class="admin-nav-link" href="/admin/vehicle/testdrive/">Test Drives</a></li>
+
+        <li><a class="admin-nav-link" href="/admin/vehicle/vehicleinspection/">Inspections</a></li>
+
+        <li><a class="admin-nav-link logout-link" href="{% url 'logout' %}">Logout</a></li>
+
+      </ul>
+    </div>
+
+  </div>
+</nav>

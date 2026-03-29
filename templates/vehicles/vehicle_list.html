@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="vehicle-list-title">Available Vehicles</h2>
+
+    <div class="row">
+
+        <!-- FILTERS -->
+        <div class="col-md-3">
+            <div class="filter-container">
+
+                <form method="get" class="filter-form">
+
+                    <input type="text" name="brand" placeholder="Brand" value="{{ filter_form.brand.value }}">
+                    <input type="text" name="model" placeholder="Model" value="{{ filter_form.model.value }}">
+
+                    <input type="number" name="min_price" placeholder="Min Price" value="{{ filter_form.min_price.value }}">
+                    <input type="number" name="max_price" placeholder="Max Price" value="{{ filter_form.max_price.value }}">
+
+                    <input type="number" name="min_year" placeholder="Min Year" value="{{ filter_form.min_year.value }}">
+                    <input type="number" name="max_year" placeholder="Max Year" value="{{ filter_form.max_year.value }}">
+
+                    {{ filter_form.fuel_type }}
+                    {{ filter_form.transmission }}
+                    {{ filter_form.body_type }}
+
+                    <input type="text" name="city" placeholder="City" value="{{ filter_form.city.value }}">
+                    <input type="text" name="state" placeholder="State" value="{{ filter_form.state.value }}">
+
+                    {{ filter_form.radius }}
+
+                    <input type="hidden" name="user_lat" id="user_lat">
+                    <input type="hidden" name="user_lon" id="user_lon">
+
+                    <button type="submit" class="filter-btn">Apply Filters</button>
+
+                </form>
+
+            </div>
+        </div>
+
+        <!-- VEHICLE CARDS -->
+        <div class="col-md-9">
+            <div class="row">
+
+                {% for v in vehicles %}
+                <div class="col-md-4 mb-4">
+                    <div class="vehicle-card">
+
+                        {% if v.images.first %}
+                        <div class="vehicle-img-box">
+                            <img src="{{ v.images.first.image.url }}" alt="{{ v }}">
+                        </div>
+                        {% endif %}
+
+                        <div class="vehicle-info">
+                            <h5 class="vehicle-name">{{ v.brand }} {{ v.model }}</h5>
+
+                            <p class="vehicle-meta">
+                                <span class="price">₹{{ v.price }}</span>
+                                <span class="year">{{ v.year }}</span>
+                            </p>
+
+                            <a href="{% url 'vehicle_detail' v.pk %}" class="vehicle-btn">
+                                View Details
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+navigator.geolocation.getCurrentPosition(function(pos) {
+    document.getElementById("user_lat").value = pos.coords.latitude;
+    document.getElementById("user_lon").value = pos.coords.longitude;
+});
+</script>
+
+{% endblock %}

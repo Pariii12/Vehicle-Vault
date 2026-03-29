@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="signup-wrapper d-flex justify-content-center align-items-center">
+    <div class="signup-card shadow fade-in">
+
+        <!-- Header -->
+        <div class="signup-header text-center">
+            <h3 class="brand-title">Vehicle Vault</h3>
+            <p class="subtitle">Create Your Account</p>
+            <p class="tagline">Buy and Sell Vehicles Easily</p>
+        </div>
+
+        <!-- Body -->
+        <div class="signup-body">
+
+            <form method="post" novalidate>
+                {% csrf_token %}
+
+                {% if form.errors %}
+                <div class="alert alert-danger text-center">
+                    Please correct the errors below.
+                </div>
+                {% endif %}
+
+                <div class="form-group mb-3">
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
+                </div>
+
+                <div class="form-group mb-3">
+                    {{ form.role.label_tag }}
+                    {{ form.role }}
+                </div>
+
+                <div class="form-group mb-3">
+                    {{ form.password1.label_tag }}
+                    {{ form.password1 }}
+                </div>
+
+                <div class="form-group mb-3">
+                    {{ form.password2.label_tag }}
+                    {{ form.password2 }}
+                </div>
+
+                <button type="submit" class="btn signup-btn">
+                    <i class="bi bi-person-plus"></i> Create Account
+                </button>
+            </form>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="signup-footer text-center">
+            <p class="footer-text">
+                Already have an account?
+                <a href="{% url 'login' %}" class="login-link">Login here</a>
+            </p>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

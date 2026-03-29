@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="edit-vehicle-container">
+
+    <h2 class="edit-vehicle-title">Edit Vehicle: {{ vehicle.brand }} {{ vehicle.model }} ({{ vehicle.year }})</h2>
+
+    <div class="edit-vehicle-card">
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-fields">
+
+                {{ form.make.label_tag }} {{ form.brand }}
+                {{ form.model.label_tag }} {{ form.model }}
+                {{ form.variant.label_tag }} {{ form.variant }}
+                {{ form.year.label_tag }} {{ form.year }}
+                {{ form.price.label_tag }} {{ form.price }}
+                {{ form.fuel_type.label_tag }} {{ form.fuel_type }}
+                {{ form.transmission.label_tag }} {{ form.transmission }}
+                {{ form.mileage.label_tag }} {{ form.mileage }}
+                {{ form.owner_type.label_tag }} {{ form.owner_type }}
+                {{ form.body_type.label_tag }} {{ form.body_type }}
+                {{ form.color.label_tag }} {{ form.color }}
+                {{ form.engine_cc.label_tag }} {{ form.engine_cc }}
+                {{ form.max_power.label_tag }} {{ form.max_power }}
+                {{ form.torque.label_tag }} {{ form.torque }}
+                {{ form.seating_capacity.label_tag }} {{ form.seating_capacity }}
+                {{ form.location.label_tag }} {{ form.location }}
+                {{ form.latitude.label_tag }} {{ form.latitude }}
+                {{ form.longitude.label_tag }} {{ form.longitude }}
+                {{ form.description.label_tag }} {{ form.description }}
+
+                {{ form.images.label_tag }} {{ form.images }}
+
+            </div>
+
+            <h4>Vehicle Features</h4>
+            <div class="feature-box">
+                <label>{{ form.sunroof }} Sunroof</label>
+                <label>{{ form.touchscreen }} Touchscreen</label>
+                <label>{{ form.rear_camera }} Rear Camera</label>
+            </div>
+
+            <button type="submit" class="edit-vehicle-btn">
+                Save Changes
+            </button>
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
