@@ -1,10 +1,15 @@
 from math import radians, sin, cos, sqrt, atan2
-
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
+
+import razorpay
+from django.conf import settings
+from django.http import JsonResponse 
+
+from django.views.decorators.csrf import csrf_exempt
 
 from core.models import User
 from .decorators import role_required
@@ -17,6 +22,7 @@ from .models import (
     Favourite,
     Offer,
     Transaction,
+    Payment
 )
 from .forms import (
     VehicleForm,
@@ -68,7 +74,7 @@ def vehicle_list(request):
     )
 
     # -----------------------------
-    # 1. FORM FILTERS
+    # FORM FILTERS
     # -----------------------------
     form = VehicleFilterForm(request.GET or None)
 
@@ -133,7 +139,7 @@ def vehicle_list(request):
             vehicles_qs = vehicles_qs.filter(id__in=filtered_ids)
 
     # -----------------------------
-    # 2. MANUAL FILTERS (brand, city, budget)
+    # MANUAL FILTERS (brand, city, budget)
     # -----------------------------
     brand = request.GET.get("brand")
     if brand:
@@ -156,7 +162,7 @@ def vehicle_list(request):
         vehicles_qs = vehicles_qs.filter(price__gte=4000000)
 
     # -----------------------------
-    # 3. SORTING
+    # SORTING
     # -----------------------------
     sort = request.GET.get("sort")
     if sort == "price_asc":
@@ -171,7 +177,7 @@ def vehicle_list(request):
         vehicles_qs = vehicles_qs.order_by("-listed_at")
 
     # -----------------------------
-    # 4. PAGINATION
+    # PAGINATION
     # -----------------------------
     paginator = Paginator(vehicles_qs, 12)
     page_number = request.GET.get("page")
@@ -501,3 +507,13 @@ def add_transaction(request):
     else:
         form = TransactionForm()
     return render(request, 'transactions/add_transaction.html', {'form': form})
+
+
+def my_payments(request):
+    # Show only payments for the logged-in buyer/user
+    payments = Payment.objects.filter(user=request.user)  # or buyer=request.user if you use Buyer model
+    return render(request, "payments/payment_list.html", {"payments": payments})
+
+
+def checkout_view(request):
+    return render(request, "payments/checkout.html")

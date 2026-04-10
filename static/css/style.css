@@ -3442,3 +3442,726 @@ body {
     color: #777;
     font-size: 16px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Dark overlay background */
+.modal-backdrop.show {
+    background: rgba(0,0,0,0.45);
+}
+
+/* Make modal small */
+#otpModal .modal-dialog {
+    max-width: 380px;
+    align-items: center;
+}
+
+/* OTP Card */
+#otpModal .modal-content {
+    border-radius: 14px;
+    padding: 28px 24px;
+    border: none;
+    background: #ffffff;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    text-align: center;
+    animation: popupFade 0.35s ease;
+}
+
+/* Remove header border */
+#otpModal .modal-header {
+    border-bottom: none;
+    padding-bottom: 10px;
+    justify-content: center;
+}
+
+/* Title */
+#otpModal .modal-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0d6efd;
+}
+
+/* Label */
+#otpModal label {
+    font-size: 14px;
+    color: #6B7280;
+    margin-bottom: 6px;
+}
+
+/* OTP input */
+#otpModal input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: 6px;
+    transition: all 0.25s ease;
+}
+
+/* Input focus */
+#otpModal input[type="text"]:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 8px rgba(13,110,253,0.25);
+    outline: none;
+}
+
+/* Verify button */
+#otpModal .btn-primary {
+    margin-top: 15px;
+    background: #0d6efd;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+#otpModal .btn-primary:hover {
+    background: #0b5ed7;
+}
+
+/* Resend button */
+#otpModal .btn-link {
+    color: #0d6efd;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+#otpModal .btn-link:disabled {
+    color: #aaa;
+}
+
+/* Timer text */
+#timerText {
+    font-size: 13px;
+    color: #6B7280;
+    margin-top: 6px;
+}
+
+/* Alert messages */
+.alert {
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* Popup animation */
+@keyframes popupFade {
+    from {
+        opacity: 0;
+        transform: translateY(-15px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===============================
+         PAYMENT LIST PAGE
+================================== */
+
+.payments-container {
+    width: 92%;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+.payments-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #0056d2;
+    margin-bottom: 20px;
+}
+
+/* Card */
+.payments-card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid #e6e9ef;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+/* Table */
+.payments-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.payments-table th {
+    background: #f3f6ff;
+    padding: 14px;
+    text-align: left;
+    font-weight: 700;
+    color: #0056d2;
+    border-bottom: 2px solid #d0ddff;
+}
+
+.payments-table td {
+    padding: 14px;
+    border-bottom: 1px solid #e6e9ef;
+    font-size: 15px;
+    color: #333;
+}
+
+/* Hover effect */
+.payments-row:hover {
+    background: #f8faff;
+    transition: 0.25s;
+}
+
+/* Vehicle name highlight */
+.vehicle-name {
+    font-weight: 700;
+    color: #0056d2;
+}
+
+/* Amount highlight */
+.amount {
+    font-weight: 700;
+    color: #28a745;
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: capitalize;
+}
+
+.status-success {
+    background: #28a745;
+}
+
+.status-pending {
+    background: #ffb300;
+    color: #333;
+}
+
+.status-failed {
+    background: #d9534f;
+}
+
+/* Payment Button */
+.payment-btn {
+    background: #0056d2;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.25s;
+}
+
+.payment-btn:hover {
+    background: #004bb5;
+    transform: translateY(-2px);
+}
+
+/* Empty message */
+.no-payments {
+    text-align: center;
+    padding: 20px;
+    color: #777;
+    font-size: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.payments-container {
+    width: 92%;
+    max-width: 1100px;
+    margin: 40px auto;
+}
+
+.payments-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #0056d2;
+    margin-bottom: 20px;
+}
+
+.payments-card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid #e6e9ef;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.payments-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.payments-table th {
+    background: #f3f6ff;
+    padding: 14px;
+    text-align: left;
+    font-weight: 700;
+    color: #0056d2;
+    border-bottom: 2px solid #d0ddff;
+}
+
+.payments-table td {
+    padding: 14px;
+    border-bottom: 1px solid #e6e9ef;
+    font-size: 15px;
+    color: #333;
+}
+
+.payments-row:hover {
+    background: #f8faff;
+    transition: 0.25s;
+}
+
+.vehicle-name {
+    font-weight: 700;
+    color: #0056d2;
+}
+
+.amount {
+    font-weight: 700;
+    color: #28a745;
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: capitalize;
+}
+
+.status-success { background: #28a745; }
+.status-pending { background: #ffb300; color: #333; }
+.status-failed { background: #d9534f; }
+
+.payment-btn {
+    background: #0056d2;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.25s;
+}
+
+.payment-btn:hover {
+    background: #004bb5;
+    transform: translateY(-2px);
+}
+
+.no-payments {
+    text-align: center;
+    padding: 20px;
+    color: #777;
+    font-size: 16px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Background overlay for modal */
+/* .modal-backdrop.show {
+    background-color: rgba(0, 0, 0, 0.4);
+} */
+
+/* OTP modal card */
+/* #otpModal .modal-content {
+    border-radius: 12px;
+    padding: 25px;
+    background: #fff;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    animation: fadeIn 0.4s ease-in-out;
+} */
+
+/* Header */
+/* #otpModal .modal-header {
+    border-bottom: none;
+    text-align: center;
+    display: block;
+}
+
+#otpModal .modal-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0d6efd; /* Vehicle Vault blue */
+} */
+
+/* Input field */
+/* #otpModal input[type="text"] {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+#otpModal input[type="text"]:focus {
+    border-color: #0d6efd;
+    outline: none;
+    box-shadow: 0 0 5px rgba(13,110,253,0.3);
+} */
+
+/* Buttons */
+/* #otpModal .btn-primary {
+    background-color: #0d6efd;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    font-weight: 600;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#otpModal .btn-primary:hover {
+    background-color: #0b5ed7;
+}
+
+#otpModal .btn-link {
+    color: #0d6efd;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+#otpModal .btn-link:disabled {
+    color: #aaa;
+    cursor: not-allowed;
+} */
+
+/* Timer text */
+/* #timerText {
+    font-size: 14px;
+    color: #666;
+    margin-top: 10px;
+    text-align: center;
+} */
+
+/* Alerts */
+/* .alert {
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    text-align: center;
+} */
+
+/* Animation */
+/* @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+} */

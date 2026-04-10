@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="signup-wrapper d-flex justify-content-center align-items-center">
+    <div class="signup-card shadow fade-in">
+        <div class="signup-header text-center">
+            <p class="subtitle">Secure Payment</p>
+            <p class="tagline">Complete your purchase safely</p>
+        </div>
+
+        <div class="signup-body text-center">
+            <p class="mb-3">Amount: ₹100</p>
+            <form id="payment-form">
+                {% csrf_token %}
+                <button id="rzp-button1" type="button" class="btn signup-btn">
+                    Pay Now
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('rzp-button1').onclick = function(e) {
+    e.preventDefault();
+    // Open Razorpay Hosted Payment Page in a popup window
+    window.open(
+        "https://rzp.io/rzp/P9nURhMZ ",   // <-- replace with your actual Payment Page link
+        "RazorpayPopup",
+        "width=600,height=700"
+    );
+};
+</script>
+{% endblock %}

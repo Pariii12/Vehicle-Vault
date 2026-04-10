@@ -147,3 +147,7 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',   # correct Django backend
     'core.auth_backend.EmailBackend',              # correct custom backend
 ]
+
+
+# RAZORPAY_KEY_ID="rzp_test_SZdJfaLGHJDw8J"
+# RAZORPAY_KEY_SECRET="2GZeQiMjc31HlRHNZHdgEEJO"

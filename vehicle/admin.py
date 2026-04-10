@@ -21,4 +21,7 @@ admin.site.register(TestDrive)
 admin.site.register(Message)
 admin.site.register(VehicleInspection)
 admin.site.register(Favourite)
-admin.site.register(Payment)
+@admin.register(Payment)
+class PaymentAdmin(admin.ModelAdmin):
+    list_display = ("user", "amount", "currency", "status", "payment_date")
+

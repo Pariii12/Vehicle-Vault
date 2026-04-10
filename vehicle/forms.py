@@ -12,9 +12,6 @@ from django.forms.widgets import ClearableFileInput
 
 
 
-# ---------------------------------------------------
-# VEHICLE FORM (CarWale Style)
-# ---------------------------------------------------
 class MultiFileInput(ClearableFileInput):
     allow_multiple_selected = True
 
@@ -52,9 +49,7 @@ class VehicleForm(forms.ModelForm):
         }
 
 
-# ---------------------------------------------------
-# MULTIPLE IMAGE UPLOAD FORM
-# ---------------------------------------------------
+
 class VehicleImageForm(forms.ModelForm):
     image = forms.ImageField(
         widget=MultiFileInput(attrs={'class': 'form-control'}),
@@ -66,11 +61,9 @@ class VehicleImageForm(forms.ModelForm):
         fields = ['image']
 
 
-# ---------------------------------------------------
-# VEHICLE FILTER FORM (CarWale Style)
-# ---------------------------------------------------
+
 class VehicleFilterForm(forms.Form):
-    make = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    brand = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
     model = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     min_price = forms.IntegerField(required=False, widget=forms.NumberInput(attrs={'class': 'form-control'}))
@@ -116,9 +109,6 @@ class VehicleFilterForm(forms.Form):
     )
 
 
-# ---------------------------------------------------
-# TEST DRIVE FORM
-# ---------------------------------------------------
 class TestDriveForm(forms.ModelForm):
     class Meta:
         model = TestDrive
@@ -130,9 +120,6 @@ class TestDriveForm(forms.ModelForm):
         }
 
 
-# ---------------------------------------------------
-# VEHICLE INSPECTION FORM
-# ---------------------------------------------------
 class VehicleInspectionForm(forms.ModelForm):
     class Meta:
         model = VehicleInspection
@@ -144,9 +131,6 @@ class VehicleInspectionForm(forms.ModelForm):
         }
 
 
-# ---------------------------------------------------
-# MESSAGE FORM
-# ---------------------------------------------------
 class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
@@ -158,9 +142,6 @@ class MessageForm(forms.ModelForm):
         }
 
 
-# ---------------------------------------------------
-# OFFER FORM
-# ---------------------------------------------------
 class OfferForm(forms.ModelForm):
     class Meta:
         model = Offer

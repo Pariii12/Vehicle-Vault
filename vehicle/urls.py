@@ -3,9 +3,6 @@ from . import views
 
 urlpatterns = [
 
-    # ---------------------------
-    # HOME & DASHBOARDS
-    # ---------------------------
 
     path('admin-dashboard/', views.adminDashboardView, name='admin_dashboard'),
     path('seller-dashboard/', views.sellerDashboardView, name='seller_dashboard'),
@@ -59,4 +56,7 @@ urlpatterns = [
     path('transactions/<int:pk>/', views.transaction_detail, name='transaction_detail'),
     path('transactions/add/', views.add_transaction, name='add_transaction'),
 
+    # path('create-order/', views.create_razorpay_order, name="create_order"),
+    path("checkout/", views.checkout_view, name="checkout"),
+    path("my-payments/", views.my_payments, name="my_payments"),
 ]

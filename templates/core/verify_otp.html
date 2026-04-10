@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Trigger Modal (optional if you want auto-open) -->
+<script>
+    window.onload = function() {
+        var otpModal = new bootstrap.Modal(document.getElementById('otpModal'));
+        otpModal.show();
+    }
+</script>
+
+<!-- OTP Modal -->
+<div class="modal fade" id="otpModal" tabindex="-1" aria-labelledby="otpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content shadow">
+      <div class="modal-header">
+        <h5 class="modal-title" id="otpModalLabel">Verify OTP</h5>
+      </div>
+      <div class="modal-body">
+        {% if error %}
+        <div class="alert alert-danger text-center">{{ error }}</div>
+        {% endif %}
+        {% if message %}
+        <div class="alert alert-success text-center">{{ message }}</div>
+        {% endif %}
+
+        <form method="post">
+          {% csrf_token %}
+          <div class="form-group mb-3">
+            <label for="otp">Enter 6-digit OTP:</label>
+            <input type="text" name="otp" class="form-control" placeholder="123456">
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Verify OTP</button>
+        </form>
+
+        <!-- Resend OTP button -->
+        <form method="post" id="resendForm" class="mt-3 text-center">
+          {% csrf_token %}
+          <button type="submit" name="resend" id="resendBtn" class="btn btn-link" disabled>
+            Resend OTP
+          </button>
+        </form>
+        <p id="timerText" class="text-center">Resend OTP in 60s</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    let timer = 60;
+    const resendBtn = document.getElementById("resendBtn");
+    const timerText = document.getElementById("timerText");
+
+    const countdown = setInterval(() => {
+        timer--;
+        timerText.textContent = "Resend OTP in " + timer + "s";
+        if (timer <= 0) {
+            clearInterval(countdown);
+            resendBtn.disabled = false;
+            timerText.textContent = "You can resend OTP now.";
+        }
+    }, 1000);
+</script>
+
+{% endblock %}

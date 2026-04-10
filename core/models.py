@@ -39,9 +39,18 @@ class User(AbstractBaseUser):
         ('seller','seller'),
         ('admin','admin'),
     )
+    status_choices = [
+        ('active', 'Active'),
+        ('inactive', 'Inactive'),
+        ('blocked', 'Blocked'),
+        ('deleted', 'Deleted'),
+    ]
+    
     role = models.CharField(max_length=10,choices=role_choice,default='buyer')
-    full_name = models.CharField(max_length=100)
-    phone = models.CharField(max_length=15)
+    name = models.CharField(max_length=100, blank=True, null=True)
+    phone = models.CharField(max_length=15, blank=True, null=True)
+    status = models.CharField(max_length=10, choices=status_choices,default='inactive') 
+    otp = models.CharField(max_length=6, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)

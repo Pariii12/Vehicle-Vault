@@ -21,8 +21,8 @@
                 {% for msg in messages %}
                 <tr class="inbox-row">
 
-                    <td>{{ msg.sender.full_name }}</td>
-                    <td>{{ msg.receiver.full_name }}</td>
+                    <td>{{ msg.sender.name }}</td>
+                    <td>{{ msg.receiver.name }}</td>
 
                     <td>
                         {% if msg.sender == request.user %}

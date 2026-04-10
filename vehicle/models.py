@@ -1,9 +1,7 @@
 from django.db import models
 from core.models import User
 
-# -----------------------------
-# VEHICLE CORE MODELS
-# -----------------------------
+
 class Vehicle(models.Model):
 
     STATUS_CHOICES = [
@@ -64,7 +62,7 @@ class Vehicle(models.Model):
     torque = models.CharField(max_length=50, blank=True, null=True)
     seating_capacity = models.PositiveSmallIntegerField(default=5)
 
-    # Features (CarWale style)
+    # Features 
     sunroof = models.BooleanField(default=False)
     touchscreen = models.BooleanField(default=False)
     rear_camera = models.BooleanField(default=False)
@@ -91,16 +89,14 @@ class Vehicle(models.Model):
         return f"{self.brand} {self.model} {self.variant or ''} ({self.year})"
 
 
-# MULTIPLE IMAGES
+
 class VehicleImage(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='vehicle_images/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
 
-# -----------------------------
-# OFFERS & TRANSACTIONS
-# -----------------------------
+
 class Offer(models.Model):
     STATUS_CHOICES = [
         ('Pending', 'Pending'),
@@ -126,9 +122,7 @@ class Transaction(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
 
-# -----------------------------
-# TEST DRIVE & INSPECTION
-# -----------------------------
+
 class TestDrive(models.Model):
     STATUS_CHOICES = [
         ('Pending', 'Pending'),
@@ -159,9 +153,7 @@ class VehicleInspection(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 
-# -----------------------------
-# MESSAGING
-# -----------------------------
+
 class Message(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name='sent_messages')
     receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='received_messages')
@@ -171,9 +163,6 @@ class Message(models.Model):
     is_read = models.BooleanField(default=False)
 
 
-# -----------------------------
-# FAVOURITES
-# -----------------------------
 class Favourite(models.Model):
     buyer = models.ForeignKey(User, on_delete=models.CASCADE)
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
@@ -183,14 +172,30 @@ class Favourite(models.Model):
         unique_together = ('buyer', 'vehicle')
 
 
-# -----------------------------
-# PAYMENTS
-# -----------------------------
+
 class Payment(models.Model):
     transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE, related_name='payments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='payments', null=True, blank=True)
     amount = models.DecimalField(max_digits=12, decimal_places=2)
+    currency = models.CharField(max_length=10, default="INR")
     payment_date = models.DateTimeField(auto_now_add=True)
-    reference_id = models.CharField(max_length=100, blank=True)
-    method = models.CharField(max_length=20, choices=[('Card','Card'),('UPI','UPI'),('Cash','Cash')])
+    reference_id = models.CharField(max_length=100, unique=True, blank=True, null=True)
+    method = models.CharField(max_length=20, choices=[('Card','Card'),('UPI','UPI'),('Cash','Cash'),('Netbanking','Netbanking'),('Wallet','Wallet')])
     status = models.CharField(max_length=20, choices=[('Pending','Pending'),('Success','Success'),('Failed','Failed')])
     updated_at = models.DateTimeField(auto_now=True)
+
+
+
+
+
+
+
+    
+    
+    
+
+    
+
+
+    # def __str__(self):
+    #     return f"{self.user.username} - {self.amount} {self.currency} ({self.status})"
