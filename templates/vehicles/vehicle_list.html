@@ -1,9 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
 
+
 <div class="container mt-4">
 
-    <h2 class="vehicle-list-title">Available Vehicles</h2>
+    <h3 class="vehicle-list-title">Available Vehicles</h3>
+
+    <!-- <a href="{% url 'add_vehicle' %}" class="simple-add-btn">Add Vehicle</a> -->
+
+    <!-- {% if request.user.is_authenticated and request.user.role == "seller" %}
+        <a href="{% url 'add_vehicle' %}" class="simple-add-btn">Add Vehicle</a>
+    {% endif %} -->
+    
+    {% if request.user.is_authenticated and request.user.role == "seller" %}
+        <a href="{% url 'add_vehicle' %}" class="simple-add-btn">
+            <span class="plus-icon">+</span> Add Vehicle
+        </a>
+    {% endif %}
+
 
     <div class="row">
 
@@ -13,27 +27,27 @@
 
                 <form method="get" class="filter-form">
 
-                    <input type="text" name="brand" placeholder="Brand" value="{{ filter_form.brand.value }}">
-                    <input type="text" name="model" placeholder="Model" value="{{ filter_form.model.value }}">
+                    {{ filter_form.brand }}
+                    {{ filter_form.model }}
 
-                    <input type="number" name="min_price" placeholder="Min Price" value="{{ filter_form.min_price.value }}">
-                    <input type="number" name="max_price" placeholder="Max Price" value="{{ filter_form.max_price.value }}">
+                    {{ filter_form.min_price }}
+                    {{ filter_form.max_price }}
 
-                    <input type="number" name="min_year" placeholder="Min Year" value="{{ filter_form.min_year.value }}">
-                    <input type="number" name="max_year" placeholder="Max Year" value="{{ filter_form.max_year.value }}">
+                    {{ filter_form.min_year }}
+                    {{ filter_form.max_year }}
 
                     {{ filter_form.fuel_type }}
                     {{ filter_form.transmission }}
                     {{ filter_form.body_type }}
 
-                    <input type="text" name="city" placeholder="City" value="{{ filter_form.city.value }}">
-                    <input type="text" name="state" placeholder="State" value="{{ filter_form.state.value }}">
+                    {{ filter_form.city }}
+                    {{ filter_form.state }}
 
                     {{ filter_form.radius }}
 
-                    <input type="hidden" name="user_lat" id="user_lat">
-                    <input type="hidden" name="user_lon" id="user_lon">
-
+                    {{ filter_form.user_lat }}
+                    {{ filter_form.user_lon }}
+                    
                     <button type="submit" class="filter-btn">Apply Filters</button>
 
                 </form>

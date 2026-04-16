@@ -6,19 +6,56 @@
     <h2 class="vehicle-detail-title">
         {{ vehicle.brand }} {{ vehicle.model }} ({{ vehicle.year }})
     </h2>
-
-    <div class="vehicle-images">
-        {% for img in vehicle.images.all %}
-            <img src="{{ img.image.url }}" alt="Vehicle Image" class="vehicle-img">
-        {% empty %}
-            <p>No images available.</p>
-        {% endfor %}
+  
+    <div class="image-gallery">
+       {% for img in vehicle.images.all %}
+           <div class="gallery-item">
+              <img src="{{ img.image.url }}" alt="Vehicle Image">
+           </div>
+       {% endfor %}
     </div>
+
 
     <div class="vehicle-price-box">
         <span class="price-label">Price:</span>
         <span class="price-value">₹{{ vehicle.price }}</span>
     </div>
+
+
+    <div class="vehicle-info-box">
+
+    <div class="info-item">
+        {% if is_favourite %}
+            <a href="{% url 'remove_favourite' vehicle.id %}" class="fav-btn fav-added">
+                ★ Remove from Favourites
+            </a>
+        {% else %}
+            <a href="{% url 'add_favourite' vehicle.id %}" class="fav-btn">
+                ☆ Add to Favourites
+            </a>
+        {% endif %}
+    </div>
+
+    
+    <div class="info-item">
+        {% if testdrive %}
+            <p class="info-line">
+              <strong>Test Drive Status:</strong> {{ testdrive.status }}
+            </p>
+
+           <p class="info-line">
+              <strong>Date:</strong> {{ testdrive.scheduled_date|date:"d-m-Y g:i a" }}
+           </p>
+        {% else %}
+           <a href="{% url 'schedule_testdrive' vehicle.id %}" class="testdrive-btn">
+               Schedule Test Drive
+           </a>
+        {% endif %}
+    </div>
+
+
+</div>
+
 
     <div class="vehicle-specs">
 
@@ -56,4 +93,8 @@
 
 </div>
 
+
 {% endblock %}
+
+
+

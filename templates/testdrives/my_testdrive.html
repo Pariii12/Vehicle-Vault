@@ -11,6 +11,7 @@
             <thead>
                 <tr>
                     <th>Vehicle</th>
+                    <th>Buyer</th>
                     <th>Seller</th>
                     <th>Scheduled Date</th>
                     <th>Status</th>
@@ -24,6 +25,7 @@
                         {{ td.vehicle.brand }} {{ td.vehicle.model }} ({{ td.vehicle.year }})
                     </td>
 
+                    <td>{{ td.buyer.name }}</td>
                     <td>{{ td.seller.name }}</td>
 
                     <td>{{ td.scheduled_date }}</td>

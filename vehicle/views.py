@@ -195,12 +195,55 @@ def vehicle_list(request):
 
 
 
+@login_required
+def my_vehicles(request):
+    vehicles_qs = (
+        Vehicle.objects.filter(seller=request.user)
+        .select_related("seller")
+        .prefetch_related("images")
+        .order_by("-listed_at")
+    )
+
+    paginator = Paginator(vehicles_qs, 12)
+    page_number = request.GET.get("page")
+    vehicles_page = paginator.get_page(page_number)
+
+    return render(
+        request,
+        "vehicles/vehicle_list.html",  
+        {
+            "vehicles": vehicles_page,
+            "filter_form": None,         
+            "sort": None,
+            "is_seller_view": True,      
+        },
+    )
+
+
+
+
 def vehicle_detail(request, pk):
     vehicle = (
         Vehicle.objects.select_related("seller")
         .prefetch_related("images", "offers", "testdrives")
         .get(pk=pk)
     )
+
+    testdrive = None
+    if request.user.is_authenticated:
+        testdrive = (
+            TestDrive.objects.filter(vehicle=vehicle, buyer=request.user)
+            .order_by('-scheduled_date')
+            .first()
+        )
+
+    is_favourite = False
+    if request.user.is_authenticated:
+      is_favourite = Favourite.objects.filter(
+        buyer=request.user,
+        vehicle=vehicle
+    ).exists()
+
 
     related_vehicles = (
         Vehicle.objects.filter(
@@ -214,8 +257,9 @@ def vehicle_detail(request, pk):
     return render(
         request,
         "vehicles/vehicle_detail.html",
-        {"vehicle": vehicle, "related_vehicles": related_vehicles},
+        {"vehicle": vehicle, "related_vehicles": related_vehicles, "testdrive": testdrive, "is_favourite": is_favourite},
     )
+
 
 
 @login_required
@@ -444,6 +488,7 @@ def make_offer(request, pk):
             offer = form.save(commit=False)
             offer.vehicle = vehicle
             offer.buyer = request.user
+            offer.seller = vehicle.seller
             offer.save()
             messages.success(request, "Offer submitted.")
             return redirect("my_offer")
@@ -463,6 +508,7 @@ def my_offer(request):
         .order_by("-created_at")
     )
     return render(request, "offers/my_offer.html", {"offers": offers})
+
 
 
 @login_required

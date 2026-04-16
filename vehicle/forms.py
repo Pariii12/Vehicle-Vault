@@ -63,19 +63,91 @@ class VehicleImageForm(forms.ModelForm):
 
 
 class VehicleFilterForm(forms.Form):
-    brand = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    model = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
-    min_price = forms.IntegerField(required=False, widget=forms.NumberInput(attrs={'class': 'form-control'}))
-    max_price = forms.IntegerField(required=False, widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    brand = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Brand'
+        })
+    )
 
-    min_year = forms.IntegerField(required=False, widget=forms.NumberInput(attrs={'class': 'form-control'}))
-    max_year = forms.IntegerField(required=False, widget=forms.NumberInput(attrs={'class': 'form-control'}))
+    model = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Model'
+        })
+    )
 
-    city = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    state = forms.CharField(required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    min_price = forms.IntegerField(
+        required=False,
+        widget=forms.NumberInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Min Price'
+        })
+    )
+
+    max_price = forms.IntegerField(
+        required=False,
+        widget=forms.NumberInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Max Price'
+        })
+    )
+
+    min_year = forms.IntegerField(
+        required=False,
+        widget=forms.NumberInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Min Year'
+        })
+    )
+
+    max_year = forms.IntegerField(
+        required=False,
+        widget=forms.NumberInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Max Year'
+        })
+    )
+
+    fuel_type = forms.ChoiceField(
+        required=False,
+        choices=[('', 'Fuel Type')] + Vehicle.FUEL_CHOICES,
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+
+    transmission = forms.ChoiceField(
+        required=False,
+        choices=[('', 'Transmission')] + Vehicle.TRANSMISSION_CHOICES,
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+
+    body_type = forms.ChoiceField(
+        required=False,
+        choices=[('', 'Body Type')] + Vehicle.BODY_TYPE_CHOICES,
+        widget=forms.Select(attrs={'class': 'form-select'})
+    )
+
+    city = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'City'
+        })
+    )
+
+    state = forms.CharField(
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'State'
+        })
+    )
 
     radius = forms.ChoiceField(
+        required=False,
         choices=[
             ('', 'Any Distance'),
             ('10', 'Within 10 km'),
@@ -83,29 +155,17 @@ class VehicleFilterForm(forms.Form):
             ('50', 'Within 50 km'),
             ('100', 'Within 100 km'),
         ],
-        required=False,
         widget=forms.Select(attrs={'class': 'form-select'})
     )
 
-    user_lat = forms.FloatField(required=False, widget=forms.NumberInput(attrs={'class': 'form-control'}))
-    user_lon = forms.FloatField(required=False, widget=forms.NumberInput(attrs={'class': 'form-control'}))
-
-    fuel_type = forms.ChoiceField(
-        choices=[('', 'Any')] + Vehicle.FUEL_CHOICES,
+    user_lat = forms.FloatField(
         required=False,
-        widget=forms.Select(attrs={'class': 'form-select'})
+        widget=forms.HiddenInput()
     )
 
-    transmission = forms.ChoiceField(
-        choices=[('', 'Any')] + Vehicle.TRANSMISSION_CHOICES,
+    user_lon = forms.FloatField(
         required=False,
-        widget=forms.Select(attrs={'class': 'form-select'})
-    )
-
-    body_type = forms.ChoiceField(
-        choices=[('', 'Any')] + Vehicle.BODY_TYPE_CHOICES,
-        required=False,
-        widget=forms.Select(attrs={'class': 'form-select'})
+        widget=forms.HiddenInput()
     )
 
 

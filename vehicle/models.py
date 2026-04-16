@@ -92,7 +92,7 @@ class Vehicle(models.Model):
 
 class VehicleImage(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='vehicle_images/')
+    image = models.ImageField(upload_to='vehicle_images/')  
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
 
@@ -176,6 +176,7 @@ class Favourite(models.Model):
 class Payment(models.Model):
     transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE, related_name='payments')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='payments', null=True, blank=True)
+    vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE, related_name="payments", null=True, blank=True)
     amount = models.DecimalField(max_digits=12, decimal_places=2)
     currency = models.CharField(max_length=10, default="INR")
     payment_date = models.DateTimeField(auto_now_add=True)
@@ -186,16 +187,5 @@ class Payment(models.Model):
 
 
 
-
-
-
-
-    
-    
-    
-
-    
-
-
     # def __str__(self):
-    #     return f"{self.user.username} - {self.amount} {self.currency} ({self.status})"
+    #    return f"{self.user.username} - {self.amount} {self.currency} ({self.status})"

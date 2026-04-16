@@ -23,10 +23,6 @@
 
                     <td class="vehicle-name">
 
-                        {% if fav.vehicle.images.first %}
-                            <img src="{{ fav.vehicle.images.first.image.url }}" class="fav-img" alt="{{ fav.vehicle }}">
-                        {% endif %}
-                        
                         {{ fav.vehicle.brand }} {{ fav.vehicle.model }} ({{ fav.vehicle.year }})
                     </td>
 
