@@ -4161,6 +4161,23 @@ body {
 
 
 
+.detail-actions {
+    margin-top: 20px;
+}
+
+.btn-accent {
+    background-color: var(--color-accent); /* Golden */
+    color: var(--color-primary); /* Navy text */
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.btn-accent:hover {
+    background-color: #f0a500;
+}
 
 
 
