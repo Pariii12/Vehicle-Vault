@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_-t_d6-90b-cosy*77un98qimmdl#o7wg9ci3t(x^zd^g+p8al'
+SECRET_KEY = 'add yours'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'vehiclevault',
         'USER': 'postgres',
-        'PASSWORD':'1234545',
+        'PASSWORD':'your password',
         'HOST': 'localhost',
         'PORT': '5432',   
     }
@@ -135,8 +135,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'pariiiee12@gmail.com'
-EMAIL_HOST_PASSWORD = 'bpkl klly cnuy rskb' #app password
+EMAIL_HOST_USER = 'your email'
+EMAIL_HOST_PASSWORD = 'your password' #app password
 
 
 LOGIN_URL = '/core/login/'
@@ -148,6 +148,3 @@ AUTHENTICATION_BACKENDS = [
     'core.auth_backend.EmailBackend',              # correct custom backend
 ]
 
-
-# RAZORPAY_KEY_ID="rzp_test_SZdJfaLGHJDw8J"
-# RAZORPAY_KEY_SECRET="2GZeQiMjc31HlRHNZHdgEEJO"
